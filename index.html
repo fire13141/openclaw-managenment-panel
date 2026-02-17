@@ -260,11 +260,33 @@
                         try {
                             ws = new WebSocket('ws://1.15.105.35:8080');
                             
-                            ws.onopen = function() {
-                                console.log('✅ 聊天连接成功');
-                                addSystemMessage('连接成功！开始聊天吧。');
-                                document.getElementById('online-count').textContent = '1';
-                            };
+                                                // 自动发送欢迎消息
+                    function sendWelcomeMessage() {
+                        if (ws && ws.readyState === WebSocket.OPEN) {
+                            const welcomeMsg = "老板，我来了，现在是实际：16:46";
+                            ws.send(JSON.stringify({
+                                type: "chat",
+                                text: welcomeMsg
+                            }));
+                            console.log("自动消息已发送:", welcomeMsg);
+                            return true;
+                        }
+                        return false;
+                    }
+                    
+                    // 修改onopen函数
+                    ws.onopen = function() {
+                        console.log("✅ WebSocket连接成功");
+                        addSystemMessage("聊天连接成功！可以开始聊天了。");
+                        document.getElementById("online-count").textContent = "1";
+                        
+                        // 连接成功后3秒发送欢迎消息
+                        setTimeout(() => {
+                            if (sendWelcomeMessage()) {
+                                addSystemMessage("欢迎消息已自动发送");
+                            }
+                        }, 3000);
+                    };
                             
                             ws.onmessage = function(event) {
                                 const data = JSON.parse(event.data);
