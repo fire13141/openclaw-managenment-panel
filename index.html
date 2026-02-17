@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>OpenClaw面板</title></head>
+<body>
+<h1>OpenClaw管理面板</h1>
+<p>✅ GitHub版本 - 无缓存</p>
+<p>更新时间: <span id="time">加载中...</span></p>
+<h2>💰 赚钱看板</h2>
+<p>全球薅羊毛: 进行中</p>
+<p>OpenWork AI: 准备中</p>
+<script>
+document.getElementById('time').textContent = new Date().toLocaleString('zh-CN');
+setInterval(()=>{
+ document.getElementById('time').textContent = new Date().toLocaleString('zh-CN');
+},1000);
+</script>
+</body>
+</html>
