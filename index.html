@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body{font-family:Arial,sans-serif;margin:0;padding:20px;background:#f0f2f5}
-        .container{max-width:1200px;margin:0 auto}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:Arial,sans-serif;background:#f0f2f5;min-height:100vh}
+        .container{max-width:1200px;margin:0 auto;padding:20px}
         .header{background:linear-gradient(135deg,#1890ff,#722ed1);color:white;padding:30px;border-radius:10px;margin-bottom:25px}
-        .header h1{font-size:32px;margin:0 0 10px}
+        .header h1{font-size:32px;margin-bottom:10px}
         .tabs{display:flex;gap:5px;background:#fff;padding:5px;border-radius:8px;margin-bottom:25px;overflow-x:auto}
-        .tab{padding:12px 24px;border:none;background:transparent;cursor:pointer;border-radius:6px}
+        .tab{padding:12px 24px;border:none;background:transparent;cursor:pointer;border-radius:6px;white-space:nowrap}
         .tab.active{background:#1890ff;color:white}
         .content{background:#fff;padding:25px;border-radius:10px;min-height:500px}
         .tab-pane{display:none}
@@ -24,11 +24,16 @@
         .stat-value{font-size:28px;font-weight:bold;color:#1890ff}
         .stat-label{color:#666;font-size:14px}
         .time{color:#999;font-size:12px;text-align:right;margin-top:20px}
+        /* 修复显示 */
+        html,body{height:100%}
+        .container{min-height:100vh}
+        .content{min-height:400px}
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header"><h1>OpenClaw管理面板v2.0</h1>
+        <div class="header">
+            <h1>OpenClaw管理面板v2.0</h1>
             <p>✅ GitHub版本 · 无缓存 · 实时更新</p>
             <p>时间: <span id="current-time">加载中...</span></p>
         </div>
@@ -41,7 +46,8 @@
             <button class="tab" onclick="showTab('tasks')">⏰定时任务</button>
             <button class="tab" onclick="showTab('monitor')">📊系统监控</button>
             <button class="tab" onclick="showTab('browser')">🌐浏览器服务</button>
-            <button class="tab" onclick="showTab('config')">⚙️配置管理</button><button class="tab" onclick="showTab('chat')">💬实时聊天</button>
+            <button class="tab" onclick="showTab('config')">⚙️配置管理</button>
+            <button class="tab" onclick="showTab('chat')">💬实时聊天</button>
         </div>
         
         <div class="content">
@@ -55,8 +61,7 @@
                 </div>
                 
                 <div class="card">
-
- <h3>🌍 全球薅羊毛项目</h3>
+                    <h3>🌍 全球薅羊毛项目</h3>
                     <p>状态: <strong>进行中</strong> | 平台: 12个 | 首周收益: 87-314元</p>
                     <div class="progress"><div class="progress-bar" style="width:40%"></div></div>
                     <p>下一步: 开始参与支付宝、微信支付活动</p>
@@ -71,7 +76,8 @@
             </div>
             
             <div id="sources" class="tab-pane"><h2>📰 顶级信源系统</h2><p>AI/创业/科技顶级信源，每日自动更新</p></div>
-            <div id="briefing" class="tab-pane"><h2>📋 内容简报系统</h2><p>网赚项目、AI进展、案例库，查看详情功能</p></div><div id="files" class="tab-pane"><h2>📁 文件管理</h2><p>文档列表、上传下载记录</p></div>
+            <div id="briefing" class="tab-pane"><h2>📋 内容简报系统</h2><p>网赚项目、AI进展、案例库，查看详情功能</p></div>
+            <div id="files" class="tab-pane"><h2>📁 文件管理</h2><p>文档列表、上传下载记录</p></div>
             <div id="tasks" class="tab-pane"><h2>⏰ 定时任务</h2><p>任务列表、执行状态、历史记录</p></div>
             <div id="monitor" class="tab-pane"><h2>📊 系统监控</h2><p>服务器状态、资源使用、性能指标</p></div>
             <div id="browser" class="tab-pane"><h2>🌐 浏览器服务</h2><p>连接状态、可用性</p></div>
@@ -86,8 +92,7 @@
                     <li>✅ 文件附件上传</li>
                     <li>✅ 表格/文档上传</li>
                     <li>✅ 消息历史记录</li>
-
- <li>✅ 在线状态显示</li>
+                    <li>✅ 在线状态显示</li>
                 </ul>
                 <p><strong>设置步骤：</strong></p>
                 <ol>
@@ -101,14 +106,15 @@
         </div>
         
         <div class="time">
-            最后更新: <span id="update-time">2026-02-17 14:28:00</span> | GitHub Pages · 无缓存
+            最后更新: <span id="update-time">2026-02-17 14:33:00</span> | GitHub Pages · 无缓存
         </div>
     </div>
     
     <script>
         function showTab(tabId) {
             document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));document.getElementById(tabId).classList.add('active');
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
             event.target.classList.add('active');
         }
         
@@ -121,8 +127,7 @@
         updateTime();
         setInterval(updateTime, 1000);
         
-        console.log('OpenClaw管理面板v2.0已加载');
+        console.log('OpenClaw管理面板v2.0修复版已加载');
     </script>
 </body>
 </html>
-```
