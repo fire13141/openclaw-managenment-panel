@@ -1,18 +1,128 @@
+```html
 <!DOCTYPE html>
 <html>
-<head><title>OpenClaw面板</title></head>
+<head>
+    <title>OpenClaw管理面板v2.0</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body{font-family:Arial,sans-serif;margin:0;padding:20px;background:#f0f2f5}
+        .container{max-width:1200px;margin:0 auto}
+        .header{background:linear-gradient(135deg,#1890ff,#722ed1);color:white;padding:30px;border-radius:10px;margin-bottom:25px}
+        .header h1{font-size:32px;margin:0 0 10px}
+        .tabs{display:flex;gap:5px;background:#fff;padding:5px;border-radius:8px;margin-bottom:25px;overflow-x:auto}
+        .tab{padding:12px 24px;border:none;background:transparent;cursor:pointer;border-radius:6px}
+        .tab.active{background:#1890ff;color:white}
+        .content{background:#fff;padding:25px;border-radius:10px;min-height:500px}
+        .tab-pane{display:none}
+        .tab-pane.active{display:block}
+        .card{background:#f8f9fa;padding:20px;border-radius:8px;margin-bottom:20px;border-left:4px solid #1890ff}
+        .progress{height:10px;background:#e0e0e0;border-radius:5px;margin:10px 0}
+        .progress-bar{height:100%;background:#1890ff;border-radius:5px}
+        .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin:20px 0}
+        .stat{text-align:center;padding:15px;background:#fff;border-radius:8px;border:1px solid #ddd}
+        .stat-value{font-size:28px;font-weight:bold;color:#1890ff}
+        .stat-label{color:#666;font-size:14px}
+        .time{color:#999;font-size:12px;text-align:right;margin-top:20px}
+    </style>
+</head>
 <body>
-<h1>OpenClaw管理面板</h1>
-<p>✅ GitHub版本 - 无缓存</p>
-<p>更新时间: <span id="time">加载中...</span></p>
-<h2>💰 赚钱看板</h2>
-<p>全球薅羊毛: 进行中</p>
-<p>OpenWork AI: 准备中</p>
-<script>
-document.getElementById('time').textContent = new Date().toLocaleString('zh-CN');
-setInterval(()=>{
- document.getElementById('time').textContent = new Date().toLocaleString('zh-CN');
-},1000);
-</script>
+    <div class="container">
+        <div class="header"><h1>OpenClaw管理面板v2.0</h1>
+            <p>✅ GitHub版本 · 无缓存 · 实时更新</p>
+            <p>时间: <span id="current-time">加载中...</span></p>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('money')">💰赚钱看板</button>
+            <button class="tab" onclick="showTab('sources')">📰顶级信源</button>
+            <button class="tab" onclick="showTab('briefing')">📋内容简报</button>
+            <button class="tab" onclick="showTab('files')">📁文件管理</button>
+            <button class="tab" onclick="showTab('tasks')">⏰定时任务</button>
+            <button class="tab" onclick="showTab('monitor')">📊系统监控</button>
+            <button class="tab" onclick="showTab('browser')">🌐浏览器服务</button>
+            <button class="tab" onclick="showTab('config')">⚙️配置管理</button><button class="tab" onclick="showTab('chat')">💬实时聊天</button>
+        </div>
+        
+        <div class="content">
+            <div id="money" class="tab-pane active">
+                <h2>💰 赚钱动态看板</h2>
+                <div class="stats">
+                    <div class="stat"><div class="stat-value">12个</div><div class="stat-label">薅羊毛平台</div></div>
+                    <div class="stat"><div class="stat-value">87-314元</div><div class="stat-label">首周收益</div></div>
+                    <div class="stat"><div class="stat-value">360-600万</div><div class="stat-label">年收入潜力</div></div>
+                    <div class="stat"><div class="stat-value">13个</div><div class="stat-label">免费API平台</div></div>
+                </div>
+                
+                <div class="card">
+
+ <h3>🌍 全球薅羊毛项目</h3>
+                    <p>状态: <strong>进行中</strong> | 平台: 12个 | 首周收益: 87-314元</p>
+                    <div class="progress"><div class="progress-bar" style="width:40%"></div></div>
+                    <p>下一步: 开始参与支付宝、微信支付活动</p>
+                </div>
+                
+                <div class="card">
+                    <h3>🤖 OpenWork AI网关</h3>
+                    <p>状态: <strong>技术验证阶段</strong> | 年收入潜力: 360-600万元</p>
+                    <div class="progress"><div class="progress-bar" style="width:15%"></div></div>
+                    <p>下一步: 完成技术验证，开始市场调研</p>
+                </div>
+            </div>
+            
+            <div id="sources" class="tab-pane"><h2>📰 顶级信源系统</h2><p>AI/创业/科技顶级信源，每日自动更新</p></div>
+            <div id="briefing" class="tab-pane"><h2>📋 内容简报系统</h2><p>网赚项目、AI进展、案例库，查看详情功能</p></div><div id="files" class="tab-pane"><h2>📁 文件管理</h2><p>文档列表、上传下载记录</p></div>
+            <div id="tasks" class="tab-pane"><h2>⏰ 定时任务</h2><p>任务列表、执行状态、历史记录</p></div>
+            <div id="monitor" class="tab-pane"><h2>📊 系统监控</h2><p>服务器状态、资源使用、性能指标</p></div>
+            <div id="browser" class="tab-pane"><h2>🌐 浏览器服务</h2><p>连接状态、可用性</p></div>
+            <div id="config" class="tab-pane"><h2>⚙️ 配置管理</h2><p>系统配置、密钥管理、加密显示</p></div>
+            
+            <div id="chat" class="tab-pane">
+                <h2>💬 实时聊天模块</h2>
+                <p>集成Tidio聊天插件，功能比QQ更好：</p>
+                <ul>
+                    <li>✅ 实时文字聊天</li>
+                    <li>✅ 图片上传/发送</li>
+                    <li>✅ 文件附件上传</li>
+                    <li>✅ 表格/文档上传</li>
+                    <li>✅ 消息历史记录</li>
+
+ <li>✅ 在线状态显示</li>
+                </ul>
+                <p><strong>设置步骤：</strong></p>
+                <ol>
+                    <li>访问 tidio.com 注册免费账号</li>
+                    <li>获取嵌入代码</li>
+                    <li>添加到本页面</li>
+                    <li>开始实时聊天</li>
+                </ol>
+                <p style="color:#1890ff;font-weight:bold">💡 建议: 使用邮箱 10821558@qq.com 注册</p>
+            </div>
+        </div>
+        
+        <div class="time">
+            最后更新: <span id="update-time">2026-02-17 14:28:00</span> | GitHub Pages · 无缓存
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleString('zh-CN');
+            document.getElementById('current-time').textContent = timeStr;
+            document.getElementById('update-time').textContent = timeStr;
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+        
+        console.log('OpenClaw管理面板v2.0已加载');
+    </script>
 </body>
 </html>
+```
