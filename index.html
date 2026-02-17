@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:Arial,sans-serif;background:#f0f2f5;min-height:100vh}
-        .container{max-width:1200px;margin:0 auto;padding:20px}
+        body{font-family:Arial,sans-serif;background:#f0f2f5;min-height:100vh;padding:20px}
+        .container{max-width:1200px;margin:0 auto}
         .header{background:linear-gradient(135deg,#1890ff,#722ed1);color:white;padding:30px;border-radius:10px;margin-bottom:25px}
         .header h1{font-size:32px;margin-bottom:10px}
         .tabs{display:flex;gap:5px;background:#fff;padding:5px;border-radius:8px;margin-bottom:25px;overflow-x:auto}
@@ -24,10 +24,6 @@
         .stat-value{font-size:28px;font-weight:bold;color:#1890ff}
         .stat-label{color:#666;font-size:14px}
         .time{color:#999;font-size:12px;text-align:right;margin-top:20px}
-        /* 修复显示 */
-        html,body{height:100%}
-        .container{min-height:100vh}
-        .content{min-height:400px}
     </style>
 </head>
 <body>
@@ -106,7 +102,7 @@
         </div>
         
         <div class="time">
-            最后更新: <span id="update-time">2026-02-17 14:33:00</span> | GitHub Pages · 无缓存
+            最后更新: <span id="update-time">2026-02-17 14:42:00</span> | GitHub Pages · 无缓存
         </div>
     </div>
     
@@ -126,8 +122,6 @@
         }
         updateTime();
         setInterval(updateTime, 1000);
-        
-        console.log('OpenClaw管理面板v2.0修复版已加载');
     </script>
 </body>
 </html>
