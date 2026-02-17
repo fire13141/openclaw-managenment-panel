@@ -54,13 +54,248 @@
         </div>
         
         <div class="tab-content">
-                                                <div id="dashboard" class="tab-pane active">
+                                                            <div id="dashboard" class="tab-pane active">
                 <h2>💰 赚钱看板</h2>
-                <p>分层展示：赚钱技能（能力建设） + 赚钱项目（直接赚钱）</p>
+                <p>分层展示：需要老板配合 → 赚钱项目 → 赚钱技能</p>
                 
-                <div class="card" style="border-left:4px solid #52c41a;">
-                    <h3>📚 赚钱技能（能力建设）</h3>
-                    <p>为赚钱项目提供技能支撑，提高成功率</p>
+                <!-- 第一层：需要老板配合的内容 -->
+                <div class="card" style="border:3px solid #f5222d;background:#fff2f0;">
+                    <h3 style="color:#f5222d;">📋 需要老板配合的内容</h3>
+                    <p><strong>重要</strong>: 以下内容需要老板配合才能完成项目，请提前准备</p>
+                    
+                    <div class="accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-button" onclick="toggleAccordion('coop-1')">
+                                🌍 全球薅羊毛项目 - 需要配合内容
+                            </button>
+                            <div id="coop-1" class="accordion-content">
+                                <ul>
+                                    <li><strong>手机验证码</strong>: 手机15822348053接收验证码（随时待命）</li>
+                                    <li><strong>邮箱验证</strong>: 10821558@qq.com查看验证邮件（每日检查）</li>
+                                    <li><strong>账号注册</strong>: 使用微信w10821558注册平台账号</li>
+                                    <li><strong>收款确认</strong>: 支付宝/微信收款码接收现金，及时确认到账</li>
+                                    <li><strong>具体活动</strong>: 
+                                        <ul>
+                                            <li>支付宝新春红包活动（需手机验证）</li>
+                                            <li>微信支付优惠活动（需微信登录）</li>
+                                            <li>抖音现金任务（需抖音账号）</li>
+                                            <li>银行APP福利（需银行卡验证）</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <button class="accordion-button" onclick="toggleAccordion('coop-2')">
+                                🚀 OpenWork开源项目 - 需要配合内容
+                            </button>
+                            <div id="coop-2" class="accordion-content">
+                                <ul>
+                                    <li><strong>GPU资源</strong>: 提供GPU测试环境（NVIDIA显卡）</li>
+                                    <li><strong>技术决策</strong>: 关键技术方案确认</li>
+                                    <li><strong>市场测试</strong>: 小范围产品测试反馈</li>
+                                    <li><strong>资金支持</strong>: 必要的小额开发资金</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item">
+                            <button class="accordion-button" onclick="toggleAccordion('coop-3')">
+                                🔑 付费API密钥转售 - 需要配合内容
+                            </button>
+                            <div id="coop-3" class="accordion-content">
+                                <ul>
+                                    <li><strong>收款渠道</strong>: 支付宝/微信/PayPal收款确认</li>
+                                    <li><strong>交易确认</strong>: 客户沟通和交易确认</li>
+                                    <li><strong>账号管理</strong>: 销售平台账号管理</li>
+                                    <li><strong>客户服务</strong>: 必要的售后沟通</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第二层：赚钱项目 -->
+                <div class="card" style="border-left:4px solid #1890ff;margin-top:20px;">
+                    <h3>🎯 赚钱项目</h3>
+                    <p>直接操作即可产生收入，一步一收益</p>
+                </div>
+                
+                <!-- 长期项目 -->
+                <div class="card">
+                    <h4>📅 长期项目（持续进行）</h4>
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-button" onclick="toggleAccordion('project-1')">
+                            🌍 全球薅羊毛项目 - 详细内容
+                        </button>
+                        <div id="project-1" class="accordion-content">
+                            <h5>📝 项目内容明确</h5>
+                            <p><strong>干什么</strong>: 参与全球现金奖励活动，只收现金不要消费券</p>
+                            <p><strong>通过什么</strong>: 使用老板提供的账号信息注册参与</p>
+                            <p><strong>完成什么</strong>: 建立稳定的现金收入来源</p>
+                            <p><strong>步骤</strong>: 
+                                <ol>
+                                    <li>发现全球现金奖励活动</li>
+                                    <li>使用老板账号注册参与</li>
+                                    <li>完成活动要求任务</li>
+                                    <li>领取现金奖励</li>
+                                    <li>记录收益并优化策略</li>
+                                </ol>
+                            </p>
+                            <p><strong>结果</strong>: 每周稳定现金收入87-314元</p>
+                            
+                            <h5>🔗 具体活动列表</h5>
+                            <ul>
+                                <li>支付宝新春红包：https://activity.alipay.com/ (需手机验证)</li>
+                                <li>微信支付优惠：https://pay.weixin.qq.com/ (需微信登录)</li>
+                                <li>抖音现金任务：https://www.douyin.com/ (需抖音账号)</li>
+                                <li>银行APP福利：各银行官方APP (需银行卡验证)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 短期项目 -->
+                <div class="card">
+                    <h4>⏰ 短期项目（有确切时间）</h4>
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-button" onclick="toggleAccordion('project-2')">
+                            🚀 OpenWork开源项目 - 预计完成: {two_weeks_later.strftime("%Y-%m-%d")}
+                        </button>
+                        <div id="project-2" class="accordion-content">
+                            <h5>📝 项目内容明确</h5>
+                            <p><strong>干什么</strong>: 将OpenWork开源AI网关项目商业化</p>
+                            <p><strong>通过什么</strong>: 技术验证→产品化→市场验证→商业化</p>
+                            <p><strong>完成什么</strong>: 建立年收入360-600万元的商业化产品</p>
+                            <p><strong>步骤</strong>: 
+                                <ol>
+                                    <li>获取OpenWork项目源码</li>
+                                    <li>搭建GPU测试环境</li>
+                                    <li>验证核心功能</li>
+                                    <li>产品化包装</li>
+                                    <li>市场小范围测试</li>
+                                    <li>正式商业化运营</li>
+                                </ol>
+                            </p>
+                            <p><strong>结果</strong>: 稳定的SaaS产品收入</p>
+                            
+                            <h5>🔗 项目资源</h5>
+                            <ul>
+                                <li>OpenWork源码：https://github.com/openwork-ai/openwork</li>
+                                <li>技术文档：https://docs.openwork.ai/</li>
+                                <li>社区讨论：https://discord.gg/openwork</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-button" onclick="toggleAccordion('project-3')">
+                            🔑 付费API密钥转售 - 预计完成: {week_later.strftime("%Y-%m-%d")}
+                        </button>
+                        <div id="project-3" class="accordion-content">
+                            <h5>📝 项目内容明确</h5>
+                            <p><strong>干什么</strong>: 转售付费API密钥，赚取信息差利润</p>
+                            <p><strong>通过什么</strong>: GitHub搜索泄露密钥→验证可用性→打包出售</p>
+                            <p><strong>完成什么</strong>: 建立稳定的API密钥供应渠道</p>
+                            <p><strong>步骤</strong>: 
+                                <ol>
+                                    <li>搜索GitHub等平台的泄露API密钥</li>
+                                    <li>验证密钥的可用性和剩余额度</li>
+                                    <li>按平台/额度/有效期分类打包</li>
+                                    <li>建立销售渠道（TG群、论坛等）</li>
+                                    <li>销售和售后服务</li>
+                                </ol>
+                            </p>
+                            <p><strong>结果</strong>: 稳定的副业收入来源</p>
+                            
+                            <h5>🔗 搜索渠道</h5>
+                            <ul>
+                                <li>GitHub搜索：https://github.com/search?q=api+key</li>
+                                <li>论坛资源：各种开发者论坛</li>
+                                <li>TG频道：相关资源分享频道</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 每日执行计划 -->
+                <div class="card">
+                    <h4>📋 每日执行计划（{today.strftime("%Y-%m-%d")}）</h4>
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-button" onclick="toggleAccordion('daily-1')">
+                            🌍 全球薅羊毛项目 - 今日工作
+                        </button>
+                        <div id="daily-1" class="accordion-content">
+                            <ul>
+                                <li><strong>做什么</strong>: 参与支付宝新春红包活动</li>
+                                <li><strong>围绕什么</strong>: 围绕现金奖励活动参与</li>
+                                <li><strong>需要老板配合</strong>: 手机15822348053接收验证码</li>
+                                <li><strong>具体步骤</strong>: 
+                                    <ol>
+                                        <li>访问支付宝活动页面</li>
+                                        <li>使用老板手机号注册</li>
+                                        <li>完成活动任务要求</li>
+                                        <li>领取现金到支付宝</li>
+                                    </ol>
+                                </li>
+                                <li><strong>预期结果</strong>: 获得20-50元现金奖励</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-button" onclick="toggleAccordion('daily-2')">
+                            🚀 OpenWork开源项目 - 今日工作
+                        </button>
+                        <div id="daily-2" class="accordion-content">
+                            <ul>
+                                <li><strong>做什么</strong>: 准备GPU测试环境</li>
+                                <li><strong>围绕什么</strong>: 围绕技术验证阶段</li>
+                                <li><strong>需要老板配合</strong>: 确认GPU资源可用性</li>
+                                <li><strong>具体步骤</strong>: 
+                                    <ol>
+                                        <li>检查服务器GPU状态</li>
+                                        <li>安装必要的驱动和库</li>
+                                        <li>下载OpenWork项目源码</li>
+                                        <li>搭建基础开发环境</li>
+                                    </ol>
+                                </li>
+                                <li><strong>预期结果</strong>: 完成环境准备，可以开始验证</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <button class="accordion-button" onclick="toggleAccordion('daily-3')">
+                            🔑 付费API密钥转售 - 今日工作
+                        </button>
+                        <div id="daily-3" class="accordion-content">
+                            <ul>
+                                <li><strong>做什么</strong>: 搜索GitHub泄露的API密钥</li>
+                                <li><strong>围绕什么</strong>: 围绕密钥获取和验证</li>
+                                <li><strong>需要老板配合</strong>: 确认收款渠道可用</li>
+                                <li><strong>具体步骤</strong>: 
+                                    <ol>
+                                        <li>搜索GitHub上的API密钥泄露</li>
+                                        <li>验证密钥的可用性</li>
+                                        <li>建立密钥验证流程</li>
+                                        <li>设计打包出售方案</li>
+                                    </ol>
+                                </li>
+                                <li><strong>预期结果</strong>: 找到5-10个可用API密钥</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 第三层：赚钱技能 -->
+                <div class="card" style="border-left:4px solid #52c41a;margin-top:20px;">
+                    <h3>📚 赚钱技能</h3>
+                    <p>能力建设，为赚钱项目提供技能支撑</p>
                 </div>
                 
                 <div class="card">
@@ -69,6 +304,55 @@
                     <p><strong>内容</strong>: 市场分析、内容创作、产品开发、流量获取、销售转化等</p>
                     <p><strong>更新</strong>: 每周自动搜索新技能，质量评估</p>
                     <div class="progress"><div class="progress-bar" style="width:60%"></div></div>
+                </div>
+                
+                <div class="card">
+                    <h4>💼 赚钱技能弹药库</h4>
+                    <p><strong>定位</strong>: 实时更新的高价值赚钱技能集合</p>
+                    <p><strong>来源</strong>: clawhub.com、GitHub社区、开发者论坛</p>
+                    <p><strong>维护</strong>: 持续迭代，淘汰过时技能，添加新技能</p>
+                    <div class="progress"><div class="progress-bar" style="width:50%"></div></div>
+                </div>
+                
+                <style>
+                    .accordion-item { margin-bottom: 10px; }
+                    .accordion-button { 
+                        width: 100%; 
+                        padding: 12px; 
+                        background: #1890ff; 
+                        color: white; 
+                        border: none; 
+                        border-radius: 6px; 
+                        text-align: left; 
+                        cursor: pointer; 
+                        font-weight: bold;
+                    }
+                    .accordion-content { 
+                        display: none; 
+                        padding: 15px; 
+                        background: #f9f9f9; 
+                        border: 1px solid #e8e8e8; 
+                        border-radius: 6px; 
+                        margin-top: 5px;
+                    }
+                </style>
+                
+                <script>
+                    function toggleAccordion(id) {{
+                        var content = document.getElementById(id);
+                        if (content.style.display === "block") {{
+                            content.style.display = "none";
+                        }} else {{
+                            content.style.display = "block";
+                        }}
+                    }}
+                    
+                    // 默认展开第一个需要老板配合的内容
+                    window.addEventListener('load', function() {{
+                        document.getElementById('coop-1').style.display = 'block';
+                    }});
+                </script>
+            </div>
                 </div>
                 
                 <div class="card">
