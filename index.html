@@ -199,16 +199,200 @@
                 </div>
             </div>
             
-            <div id="chat" class="tab-pane">
+                        <div id="chat" class="tab-pane">
                 <h2>💬 实时聊天模块</h2>
-                <p>自建WebSocket聊天系统，完全控制，无需第三方</p>
+                <p>类似QQ的实时对话功能，支持文字聊天、在线用户、消息历史</p>
                 
                 <div class="card">
-                    <h3>🚀 自建聊天系统</h3>
-                    <p><strong>状态</strong>: ✅ 开发完成，已部署</p>
-                    <p><strong>技术方案</strong>: WebSocket + Node.js后端</p>
-                    <p><strong>服务器</strong>: ws://1.15.105.35:8080</p>
+                    <h3>🚀 聊天功能</h3>
+                    <div class="stats">
+                        <div class="stat"><div class="stat-value" id="online-count">0</div><div class="stat-label">在线用户</div></div>
+                        <div class="stat"><div class="stat-value" id="message-count">0</div><div class="stat-label">消息总数</div></div>
+                        <div class="stat"><div class="stat-value" style="color:green;">✅</div><div class="stat-label">连接状态</div></div>
+                        <div class="stat"><div class="stat-value">实时</div><div class="stat-label">消息延迟</div></div>
+                    </div>
                 </div>
+                
+                <div class="card">
+                    <h3>💬 聊天窗口</h3>
+                    <div style="display:flex;gap:20px;height:400px;">
+                        <div style="flex:3;display:flex;flex-direction:column;">
+                            <div id="chat-messages" style="flex:1;border:1px solid #ddd;border-radius:8px;padding:15px;overflow-y:auto;background:#f9f9f9;margin-bottom:10px;">
+                                <div style="color:#666;text-align:center;padding:20px;">连接聊天服务器中...</div>
+                            </div>
+                            <div style="display:flex;gap:10px;">
+                                <input type="text" id="chat-input" placeholder="输入消息..." style="flex:1;padding:12px;border:1px solid #ddd;border-radius:6px;font-size:14px;">
+                                <button onclick="sendMessage()" style="padding:12px 24px;background:#1890ff;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:bold;">发送</button>
+                            </div>
+                        </div>
+                        
+                        <div style="flex:1;border:1px solid #ddd;border-radius:8px;padding:15px;background:#fff;">
+                            <h4 style="margin-bottom:10px;">👥 在线用户</h4>
+                            <div id="online-users" style="font-size:14px;">
+                                <div style="color:#999;">加载中...</div>
+                            </div>
+                            <div style="margin-top:15px;padding-top:15px;border-top:1px solid #eee;">
+                                <h4>⚙️ 设置</h4>
+                                <input type="text" id="username-input" placeholder="设置昵称" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;margin-bottom:10px;">
+                                <button onclick="setUsername()" style="width:100%;padding:8px;background:#52c41a;color:white;border:none;border-radius:4px;cursor:pointer;">设置昵称</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>📋 功能说明</h3>
+                    <ul>
+                        <li><strong>实时聊天</strong>: 文字消息实时发送接收</li>
+                        <li><strong>在线用户</strong>: 显示当前在线用户列表</li>
+                        <li><strong>消息历史</strong>: 保存和显示最近20条消息</li>
+                        <li><strong>昵称设置</strong>: 自定义聊天昵称</li>
+                        <li><strong>系统消息</strong>: 用户加入/离开通知</li>
+                    </ul>
+                    <p><strong>服务器</strong>: ws://1.15.105.35:8080 (已部署)</p>
+                </div>
+                
+                <script>
+                    let ws = null;
+                    let messageCount = 0;
+                    
+                    function connectWebSocket() {
+                        try {
+                            ws = new WebSocket('ws://1.15.105.35:8080');
+                            
+                            ws.onopen = function() {
+                                console.log('✅ 聊天连接成功');
+                                addSystemMessage('连接成功！开始聊天吧。');
+                                document.getElementById('online-count').textContent = '1';
+                            };
+                            
+                            ws.onmessage = function(event) {
+                                const data = JSON.parse(event.data);
+                                handleMessage(data);
+                            };
+                            
+                            ws.onerror = function(error) {
+                                console.error('聊天连接错误:', error);
+                                addSystemMessage('连接失败，请检查服务器状态。');
+                            };
+                            
+                            ws.onclose = function() {
+                                console.log('聊天连接关闭');
+                                addSystemMessage('连接已断开，正在重连...');
+                                setTimeout(connectWebSocket, 3000);
+                            };
+                            
+                        } catch (error) {
+                            console.error('连接失败:', error);
+                        }
+                    }
+                    
+                    function handleMessage(data) {
+                        switch(data.type) {
+                            case 'system':
+                                addSystemMessage(data.text);
+                                break;
+                            case 'chat':
+                                addChatMessage(data.user, data.text, data.time);
+                                messageCount++;
+                                document.getElementById('message-count').textContent = messageCount;
+                                break;
+                            case 'history':
+                                data.messages.forEach(msg => {
+                                    addChatMessage(msg.user, msg.text, msg.time);
+                                    messageCount++;
+                                });
+                                document.getElementById('message-count').textContent = messageCount;
+                                break;
+                            case 'users':
+                                updateOnlineUsers(data.users, data.count);
+                                break;
+                        }
+                    }
+                    
+                    function addSystemMessage(text) {
+                        const messagesDiv = document.getElementById('chat-messages');
+                        const msgDiv = document.createElement('div');
+                        msgDiv.style.cssText = 'margin-bottom:10px;padding:8px;background:#e6f7ff;border-radius:6px;border-left:3px solid #1890ff;font-size:13px;color:#666;';
+                        msgDiv.innerHTML = `<i class="fas fa-info-circle"></i> ${text}`;
+                        messagesDiv.appendChild(msgDiv);
+                        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                    }
+                    
+                    function addChatMessage(user, text, time) {
+                        const messagesDiv = document.getElementById('chat-messages');
+                        const msgDiv = document.createElement('div');
+                        msgDiv.style.cssText = 'margin-bottom:12px;padding:10px;background:white;border-radius:8px;border:1px solid #f0f0f0;';
+                        
+                        const timeStr = new Date(time).toLocaleTimeString('zh-CN', {hour: '2-digit', minute:'2-digit'});
+                        msgDiv.innerHTML = `
+                            <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+                                <strong style="color:#1890ff;">${user}</strong>
+                                <small style="color:#999;">${timeStr}</small>
+                            </div>
+                            <div>${text}</div>
+                        `;
+                        
+                        messagesDiv.appendChild(msgDiv);
+                        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                    }
+                    
+                    function updateOnlineUsers(users, count) {
+                        const usersDiv = document.getElementById('online-users');
+                        usersDiv.innerHTML = '';
+                        
+                        if (users && users.length > 0) {
+                            users.forEach(user => {
+                                const userDiv = document.createElement('div');
+                                userDiv.style.cssText = 'padding:6px 10px;margin-bottom:5px;background:#f5f5f5;border-radius:4px;';
+                                userDiv.innerHTML = `<i class="fas fa-user" style="color:#52c41a;margin-right:8px;"></i>${user}`;
+                                usersDiv.appendChild(userDiv);
+                            });
+                        } else {
+                            usersDiv.innerHTML = '<div style="color:#999;">暂无其他用户</div>';
+                        }
+                        
+                        document.getElementById('online-count').textContent = count || '0';
+                    }
+                    
+                    function sendMessage() {
+                        const input = document.getElementById('chat-input');
+                        const text = input.value.trim();
+                        
+                        if (text && ws && ws.readyState === WebSocket.OPEN) {
+                            ws.send(JSON.stringify({
+                                type: 'chat',
+                                text: text
+                            }));
+                            input.value = '';
+                            input.focus();
+                        }
+                    }
+                    
+                    function setUsername() {
+                        const input = document.getElementById('username-input');
+                        const name = input.value.trim();
+                        
+                        if (name && ws && ws.readyState === WebSocket.OPEN) {
+                            ws.send(JSON.stringify({
+                                type: 'set_user',
+                                name: name
+                            }));
+                            addSystemMessage(`昵称已设置为: ${name}`);
+                            input.value = '';
+                        }
+                    }
+                    
+                    // 回车发送消息
+                    document.getElementById('chat-input').addEventListener('keypress', function(e) {
+                        if (e.key === 'Enter') sendMessage();
+                    });
+                    
+                    // 页面加载时连接
+                    window.addEventListener('load', function() {
+                        connectWebSocket();
+                    });
+                </script>
             </div>
         </div>
         
